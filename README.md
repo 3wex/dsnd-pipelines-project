@@ -1,55 +1,87 @@
-# README Template
+# StyleSense: Fashion Forward Forecasting
 
-Below is a template provided for use when building your README file for students.
+**StyleSense** is an end-to-end machine learning pipeline designed to predict customer recommendations for an online women's clothing retailer. By analyzing customer reviews, product categories, and demographic data, the system automatically determines whether a customer is likely to recommend a product.
 
-# Project Title
+The repository features a heterogeneous data pipeline capable of processing text, categorical, and numerical data simultaneously. Key highlights include:
+* **NLP Integration:** Efficient tokenization and lemmatization using SpaCy.
+* **Feature Engineering:** Custom transformers for text-length features and linguistic attributes.
+* **Model Optimization:** XGBoost classifier tuned via `RandomizedSearchCV`.
 
-Project description goes here.
+---
 
 ## Getting Started
 
-Instructions for how to get a copy of the project running on your local machine.
+These instructions will help you set up a copy of the project on your local machine for development and testing.
 
 ### Dependencies
 
-```
-Examples here
-```
+To run this project, you will need **Python 3.x** and the following libraries:
+* `pandas`
+* `scikit-learn`
+* `xgboost`
+* `spacy`
+* `joblib`
 
 ### Installation
 
-Step by step explanation of how to get a dev environment running.
+1.  **Clone the repository** to your local machine.
+2.  **Navigate to the project directory** in your terminal.
+3.  **Install the required dependencies**:
+    ```bash
+    pip install -r requirements.txt
+    ```
+4.  **Download the SpaCy language model**:
+    ```bash
+    python -m spacy download en_core_web_sm
+    ```
+5.  **Launch Jupyter Notebook**:
+    ```bash
+    jupyter notebook
+    ```
 
-List out the steps
+---
+
+## Usage & Testing
+
+Testing is performed by executing the notebook cells sequentially within the `starter/` directory.
+
+### Pipeline Breakdown
+1.  **Base Model Testing:** Run the "Training Pipeline" section to verify that the `ColumnTransformer` (integrating the SpaCy processor) trains the base model.
+2.  **Optimization Testing:** Run the "Fine-Tuning Pipeline" section to execute the `RandomizedSearchCV` and evaluate the F1-Macro score.
+
+### Reproducing Results
+1.  Open `starter/starter.ipynb`.
+2.  **Run all cells** from top to bottom.
+3.  The serialized models will be automatically exported to the `models/` directory:
+    * `models/base_xgboost_pipeline.pkl`
+    * `models/tuned_xgboost_pipeline.pkl`
+
+---
+
+## Project Structure
+
+```text
+├── starter/
+│   ├── starter.ipynb        # Main notebook (EDA, architecture, training)
+│   └── data/
+│       └── reviews.csv      # Anonymized customer reviews dataset
+├── models/                  # Output directory for trained .pkl files
+├── requirements.txt         # Python dependencies
+└── README.md                # Project documentation
 
 ```
-Give an example here
-```
 
-## Testing
-
-Explain the steps needed to run any automated tests
-
-### Break Down Tests
-
-Explain what each test does and why
-
-```
-Examples here
-```
-
-## Project Instructions
-
-This section should contain all the student deliverables for this project.
+---
 
 ## Built With
 
-* [Item1](www.item1.com) - Description of item
-* [Item2](www.item2.com) - Description of item
-* [Item3](www.item3.com) - Description of item
+* [Scikit-Learn](https://scikit-learn.org/) - Pipelines and hyperparameter tuning.
+* [XGBoost](https://xgboost.readthedocs.io/) - Gradient boosting framework.
+* [spaCy](https://spacy.io/) - Industrial-strength Natural Language Processing.
+* [Pandas](https://pandas.pydata.org/) - Data manipulation and analysis.
 
-Include all items used to build project.
+---
 
 ## License
 
-[License](LICENSE.txt)
+This project is licensed under the MIT License - see the `LICENSE.txt` file for details.
